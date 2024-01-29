@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Header from "./components/header";
+import Main from "./components/main";
+import Footer from "./components/footer";
+import Login from "./components/login";
+import Courses from "./components/courses";
+import Portfolio from "./components/portfolio";
+import Aboutus from "./components/aboutus";
+import Pricing from "./components/pricing";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<LayoutsWithHeader />}>
+          <Route path="/" element={<Main />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/aboutus" element={<Aboutus />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/aboutus" element={<Aboutus />} />
+        </Route>
+
+        {/* <Route path="*" element={<NotFound />} />
+          <Route exact path="/" element={<Home />} />
+        </Route>
+        <Route exact path="/login" element={<LoginScreen />} />
+        <Route exact path="/register" element={<RegisterScreen />} />
+        <Route
+          exact
+          path="/forgotpassword"
+          element={<ForgotPasswordScreen />}
+        />
+        <Route exact path="/resetpassword" element={<ResetPasswordScreen />} /> */}
+      </Routes>
+    </Router>
   );
-}
+};
+
+const LayoutsWithHeader = () => {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 
 export default App;
