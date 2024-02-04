@@ -9,6 +9,7 @@ import Courses from "./components/courses";
 import Portfolio from "./components/portfolio";
 import Aboutus from "./components/aboutus";
 import Pricing from "./components/pricing";
+import Register from "./components/register";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/aboutus" element={<Aboutus />} />
+          <Route path="/register" element={<Register />} />
         </Route>
 
         {/* <Route path="*" element={<NotFound />} />

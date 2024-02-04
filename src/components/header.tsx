@@ -1,7 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  // Check if authToken exists in localStorage
+  const authToken = localStorage.getItem("authToken");
+  const isAuthenticated = authToken !== null;
+  const navigate = useNavigate();
+  const logouttrigger = () => {
+    localStorage.removeItem("authToken");
+    navigate("/login");
+  };
+
   return (
     <div id="wrapper">
       <header>
@@ -18,9 +28,9 @@ const Header = () => {
                 <span className="icon-bar"></span>
                 <span className="icon-bar"></span>
               </button>
-              <a className="navbar-brand" href="index.html">
+              <div className="navbar-brand">
                 <img src="assets/img/logo.png" alt="logo" />
-              </a>
+              </div>
             </div>
             <div className="navbar-collapse collapse ">
               <ul className="nav navbar-nav">
@@ -39,9 +49,20 @@ const Header = () => {
                 <li>
                   <Link to="/pricing">Pricing</Link>
                 </li>
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
+                {isAuthenticated ? (
+                  <li onClick={logouttrigger}>
+                    <a>Logout</a>
+                  </li>
+                ) : (
+                  <>
+                    <li>
+                      <Link to="/login">Login</Link>
+                    </li>
+                    <li>
+                      <Link to="/register">Register</Link>
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>

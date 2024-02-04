@@ -1,4 +1,25 @@
+import { useEffect } from "react";
+import { jwtDecode } from "jwt-decode";
+import { useState } from "react";
+
 const Main = () => {
+  const restoredData: any = localStorage.getItem("authToken");
+
+  // const parsedData = JSON.parse(restoredData);
+
+  let data: any;
+  let username = "";
+  if (restoredData) {
+    console.log(restoredData);
+    data = jwtDecode(restoredData ?? "");
+    username = data["username"];
+    console.log(data);
+  }
+
+  // const [username, setusername] = useState("");
+
+  // setusername(data.username);
+
   return (
     <div className="wrapper">
       <section className="callaction">
@@ -6,6 +27,7 @@ const Main = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="aligncenter">
+                <h1 className="aligncenter">Hi {username}</h1>
                 <h1 className="aligncenter">Our Featured Courses</h1>
                 <span
                   className="clear spacer_responsive_hide_mobile "
